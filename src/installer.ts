@@ -72,7 +72,7 @@ export async function InstallPkg(pkgname: string, srvDir: string): Promise<void>
         //await logging.debug(`${fileext}`);
 
         // Clear temp folder
-        //await fs.rm("./tmp", { recursive: true, force: false });
+        await fs.rm("./tmp", { recursive: true, force: false });
     }
     catch (err: unknown) {
         await logging.error(`Error occurred while InstallPkg(): ${err}`);
