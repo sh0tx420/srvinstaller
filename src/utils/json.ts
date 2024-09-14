@@ -16,6 +16,7 @@ export async function ReadJson(fpath: string): Promise<any> {
         const content: string = await readFile(fpath, { encoding: "utf-8" });
         
         // Support JSON with Comments
+        // NOTE: broken for now
         const lines = content.split("\n");
         const processedLines = lines.map(line => {
             return line.replace(/\/\/.*$/, "");

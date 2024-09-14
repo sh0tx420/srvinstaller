@@ -5,9 +5,7 @@
     "metamod_p": "https://github.com/Bots-United/metamod-p/releases/download/v1.21p38/metamod_i686_linux_win32-1.21p38.tar.xz",
     "amxmodx": "https://www.amxmodx.org/amxxdrop/1.9/amxmodx-1.9.0-git5294-base-linux.tar.gz",
     "amxx_ext_cs": "https://www.amxmodx.org/amxxdrop/1.9/amxmodx-1.9.0-git5294-cstrike-linux.tar.gz",
-    
     "mmsource": "https://mms.alliedmods.net/mmsdrop/1.12/mmsource-1.12.0-git1210-linux.tar.gz",
     "sourcemod": "https://sm.alliedmods.net/smdrop/1.12/sourcemod-1.12.0-git7156-linux.tar.gz",
-    
     "mmsource2": "https://mms.alliedmods.net/mmsdrop/2.0/mmsource-2.0.0-git1313-linux.tar.gz"
 }
