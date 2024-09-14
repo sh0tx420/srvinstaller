@@ -1,0 +1,32 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+    - '*'
+
+jobs:
+  build-and-release:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    permissions:
+          contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        
+      - run: bun install
+      
+      - run: bun run compile
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: |
+            "./build/srvinstaller"
+            "./build/srvinstaller.exe"
