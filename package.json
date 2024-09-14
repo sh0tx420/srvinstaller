@@ -1,5 +1,6 @@
 {
     "name": "srvinstaller",
+    "version": "1.0.0",
     "module": "src/main.ts",
     "devDependencies": {
         "@eslint/js": "^9.9.1",
