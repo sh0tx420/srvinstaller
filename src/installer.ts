@@ -8,7 +8,7 @@ import { ReadJson } from "./utils/json";
 import { DecompressTarGzip, DecompressTarXz } from "./utils/compression";
 
 // Package sources for server addons
-const resolved = path.resolve(__dirname, "../sources.jsonc");
+const resolved = path.resolve(__dirname, "../sources.json");
 const sourcesJson = await ReadJson(resolved);
 const pkgSources: PkgSources = sourcesJson;
 
