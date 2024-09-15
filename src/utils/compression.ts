@@ -79,7 +79,7 @@ export async function DecompressTarGzip(inputPath: string, outputPath: string): 
         await Bun.write(`${outputPath}/extracted.tar`, gzipData);
 
         // Extract contents of tar file
-        await ExtractTar(`${outputPath}/extracted.tar`, `${outputPath}/t2`);
+        await ExtractTar(`${outputPath}/extracted.tar`, outputPath);
     
         await logging.info("Package installed successfully.");
     }
@@ -107,7 +107,7 @@ export async function DecompressTarXz(inputPath: string, outputPath: string): Pr
         await Bun.write("./tmp/extracted.tar", xzText);
 
         // Extract contents of tar file
-        await ExtractTar("./tmp/extracted.tar", `${outputPath}`);
+        await ExtractTar("./tmp/extracted.tar", outputPath);
     
         await logging.info("Package installed successfully.");
     }
