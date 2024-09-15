@@ -4,26 +4,6 @@ import { XzReadableStream } from "xz-decompress";
 
 import logging from "./logging";
 
-/**
- * Convert Uint8Array to a string
- * 
- * @param u8array Uint8Array
- * @returns Converted string
- */
-/*
-async function U8ToStr(u8array: Uint8Array): Promise<string | undefined> {
-    const decoder = new TextDecoder();
-    try {
-        const res = decoder.decode(u8array);
-        return res;
-    }
-    catch (err: unknown) {
-        await logging.error(`Error#U8ToStr: ${err}`);
-        throw err;
-    }
-}
-*/
-
 async function ExtractTar(tarPath: string, destDir: string): Promise<void> {
     try {
         if (!await fs.promises.exists(destDir))
