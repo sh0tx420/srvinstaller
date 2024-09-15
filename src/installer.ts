@@ -12,6 +12,27 @@ const resolved = path.resolve(__dirname, "../sources.json");
 const sourcesJson = await ReadJson(resolved);
 const pkgSources: PkgSources = sourcesJson;
 
+async function FixPaths(pkgname: string, srvGameDir: string): Promise<void> {
+    switch (pkgname) {
+        case "metamod_p": {
+            // Create metamod directory
+            const createDir = `${srvGameDir}/addons/metamod/`;
+
+            if (await fs.exists(createDir))
+                await fs.mkdir(createDir);
+
+            // Move metamod.so to addons/metamod/
+            await fs.cp(`${srvGameDir}/metamod.so`, `${createDir}/metamod.so`);
+            await fs.rm(`${srvGameDir}/metamod.so`);
+
+            break;
+        }
+        default: {
+            break;
+        }
+    }
+}
+
 export async function InstallPkg(pkgname: string, srvDir: string): Promise<void> {
     const source = pkgSources[pkgname];
 
@@ -73,6 +94,9 @@ export async function InstallPkg(pkgname: string, srvDir: string): Promise<void>
 
         // Clear temp folder
         await fs.rm("./tmp", { recursive: true, force: false });
+
+        // Fix paths for specific packages
+        await FixPaths(pkgname, srvDir);
     }
     catch (err: unknown) {
         await logging.error(`Error occurred while InstallPkg(): ${err}`);
