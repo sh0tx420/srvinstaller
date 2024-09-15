@@ -1,6 +1,7 @@
 import { $ } from "bun";
 import fs from "fs";
 import { XzReadableStream } from "xz-decompress";
+import unzipper from "unzipper";
 
 import logging from "./logging";
 
@@ -58,6 +59,17 @@ async function ExtractTar(tarPath: string, destDir: string): Promise<void> {
 }
 
 /**
+ * Parse a .zip file and decompress it
+ * 
+ * @param filePath Input file to decompress
+ * @param outPath Where to output contents of file
+ */
+export async function DecompressZip(inputPath: string, outputPath: string): Promise<void> {
+    const dir = await unzipper.Open.file(inputPath);
+    await dir.extract({ path: outputPath });
+}
+
+/**
  * Parse a .tar.gz file and decompress it
  * 
  * @param filePath Input file to decompress
@@ -80,8 +92,6 @@ export async function DecompressTarGzip(inputPath: string, outputPath: string): 
 
         // Extract contents of tar file
         await ExtractTar("./tmp/extracted.tar", outputPath);
-    
-        await logging.info("Package installed successfully.");
     }
     catch (err: unknown) {
         await logging.error(`Error#DecompressTarGzip(): ${err}`);
@@ -108,8 +118,6 @@ export async function DecompressTarXz(inputPath: string, outputPath: string): Pr
 
         // Extract contents of tar file
         await ExtractTar("./tmp/extracted.tar", outputPath);
-    
-        await logging.info("Package installed successfully.");
     }
     catch (err: unknown) {
         await logging.error(`Error#DecompressTarXz(): ${err}`);

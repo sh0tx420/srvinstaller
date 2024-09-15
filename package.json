@@ -18,6 +18,8 @@
     },
     "type": "module",
     "dependencies": {
+        "@types/unzipper": "^0.10.10",
+        "unzipper": "^0.12.3",
         "xz-decompress": "^0.2.2"
     }
 }

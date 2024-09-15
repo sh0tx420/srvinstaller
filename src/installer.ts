@@ -5,7 +5,7 @@ import path from "path";
 
 import logging from "./utils/logging";
 import { ReadJson } from "./utils/json";
-import { DecompressTarGzip, DecompressTarXz } from "./utils/compression";
+import { DecompressTarGzip, DecompressTarXz, DecompressZip } from "./utils/compression";
 
 // Package sources for server addons
 const resolved = path.resolve(__dirname, "../sources.json");
@@ -67,7 +67,7 @@ export async function InstallPkg(pkgname: string, srvDir: string): Promise<void>
         let fileext = filename.split(".").pop();
         if (fileext === "zip") {
             // Unzip
-            
+            await DecompressZip(dest, srvDir);
         }
         else {
             // Try tar.gz
@@ -88,6 +88,8 @@ export async function InstallPkg(pkgname: string, srvDir: string): Promise<void>
                     break;
                 }
             }
+
+            await logging.info("Package installed successfully.");
         }
 
         //await logging.debug(`${fileext}`);
