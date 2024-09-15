@@ -13,7 +13,8 @@
     },
     "scripts": {
         "start": "bun run src/main.ts",
-        "compile": "bun build --compile --minify --sourcemap ./src/main.ts --outfile ./build/srvinstaller"
+        "compile_win32": "bun build ./src/main.ts --compile --target=bun-windows-x64 --minify --outfile ./build/srvinstaller_win32",
+        "compile_linux": "bun build ./src/main.ts --compile --target=bun-linux-x64 --minify --outfile ./build/srvinstaller"
     },
     "type": "module",
     "dependencies": {

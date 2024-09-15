@@ -7,10 +7,7 @@ on:
 
 jobs:
   build-and-release:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: "ubuntu-latest"
     permissions:
           contents: write
     steps:
@@ -22,11 +19,11 @@ jobs:
         
       - run: bun install
       
-      - run: bun run compile
+      - run: |
+          bun run compile_win32
+          bun run compile_linux
 
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: |
-            "./build/srvinstaller"
-            "./build/srvinstaller.exe"
+          artifacts: "./build/srvinstaller,./build/srvinstaller_win32.exe,sources.json"
