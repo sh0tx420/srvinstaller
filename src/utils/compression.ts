@@ -113,5 +113,6 @@ export async function DecompressTarXz(inputPath: string, outputPath: string): Pr
     }
     catch (err: unknown) {
         await logging.error(`Error#DecompressTarXz(): ${err}`);
+        throw err;
     }
 }
