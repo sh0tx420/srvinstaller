@@ -76,10 +76,10 @@ export async function DecompressTarGzip(inputPath: string, outputPath: string): 
         const gzipData = Bun.gunzipSync(fileData);
 
         await fs.promises.mkdir(outputPath, { recursive: true });
-        await Bun.write(`${outputPath}/extracted.tar`, gzipData);
+        await Bun.write("./tmp/extracted.tar", gzipData);
 
         // Extract contents of tar file
-        await ExtractTar(`${outputPath}/extracted.tar`, outputPath);
+        await ExtractTar("./tmp/extracted.tar", outputPath);
     
         await logging.info("Package installed successfully.");
     }
@@ -96,7 +96,7 @@ export async function DecompressTarXz(inputPath: string, outputPath: string): Pr
         const fileData = file.stream();
 
         if (!file.name)
-            throw new Error("Error#DecompressTarGzip(): No file name");
+            throw new Error("Error#DecompressTarXz(): No file name");
 
         // Extract tar from .tar.xz
         const xzData = new XzReadableStream(fileData);

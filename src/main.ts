@@ -31,7 +31,7 @@ async function main(): Promise<void> {
         process.exit(0);
     }
     else if (values.install) {
-        const baseDir = prompt("Input base directory of server:");
+        const baseDir = prompt("Input game directory of server:");
 
         if (!baseDir) {
             await logging.error("No server directory given, exiting...");
