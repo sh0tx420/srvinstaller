@@ -27,6 +27,12 @@ async function FixPaths(pkgname: string, srvGameDir: string): Promise<void> {
 
             break;
         }
+        case "metamod_r": {
+            await fs.rm(`${srvGameDir}/example_plugin/`, { recursive: true, force: false });
+            await fs.rm(`${srvGameDir}/sdk/`, { recursive: true, force: false });
+
+            break;
+        }
         default: {
             break;
         }
